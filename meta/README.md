@@ -8,3 +8,11 @@ This directory contains meta information about the stimuli and the EEG setup.
 
 [1]: https://github.com/bmcfee/librosa
 [2]: http://www.biosemi.com/download/Cap_coords_all.xls
+
+Sebastian Stober, 4年前| 1作者(Sebastian Stober)这个目录包含关于刺激和脑电图设置的元信息。
+
+和垮掉的一代。v1 - librosa beat tracker][1]检测到的刺激和提示中的beat onsets(版本1，受试者P01-P68)垮掉的一代。v2 - librosa beat tracker[[1]]检测到的刺激和线索中的beat onsets(版本2,subiects 
+
+P09-P14)电极信息。
+xlsx - EEG通道名称和cab坐标，从“官方Biosemi网站[21，其中也有一个与电极位置的图像。刺激元数据的版本1刺激(subiects P91-P88)刺激元数据的版本2刺激元数据(subiects P99-P14)11:
+https://github。com/bmcfee/librosa: http://ww.biosemi.com/download/Cap-coords all.xls
