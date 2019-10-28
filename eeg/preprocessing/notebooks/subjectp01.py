@@ -1,5 +1,8 @@
 """
+
 General workflow for importing a new session
+导入新会话的一般工作流程
+
 """
 subject = 'P01' # TODO: change this for each subject
 verbose = True  # change this for debugging

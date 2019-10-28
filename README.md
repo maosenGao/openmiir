@@ -1,21 +1,28 @@
 ![OpenMIIR: a public domain dataset of EEG recordings for music imagery information retrieval](https://raw.githubusercontent.com/sstober/openmiir/master/logo/OpenMIIR-logo_transparent_728x265.png)
 
 Music imagery information retrieval (MIIR) systems may one day be able to recognize a song just as we think of it.
+音乐意象信息恢复(MIIR)系统也许有一天能够识别出我们所认为的歌曲。
+
 As a step towards such technology, we are presenting a public domain dataset of electroencephalography (EEG) recordings taken during music perception and imagination.
+作为向这一技术迈进的一步，我们展示了一个公共领域的脑电图(EEG)数据集，它记录了音乐感知和想象过程。
+我们是在一项正在进行的研究中获得这些数据的。
+
 We acquired this data during an ongoing study that so far comprised 10 subjects listening to and imagining 12 short music fragments - each 7s-16s long - taken from well-known pieces. 
+到目前为止，这项研究包括10名受试者，他们分别听和想象12段短的音乐片段——每段都有7 -16秒长——这些片段都是从著名的音乐片段中截取的。
+
 These stimuli were selected from different genres and systematically span several musical dimensions such as meter, tempo and the presence of lyrics.
 This way, various retrieval and classification scenarios can be addressed.
-The dataset is primarily aimed to enable music information retrieval researchers interested in these new MIIR challenges to easily test and adapt their existing approaches for music analysis like fingerprinting, beat tracking or tempo estimation on this new kind of data.
-We also hope that the OpenMIIR dataset will facilitate a stronger interdisciplinary collaboration between music information retrieval researchers and neuroscientists.
-
-音乐图像信息检索(MIIR)系统也许有一天能够识别出我们所认为的歌曲。
-作为向这一技术迈进的一步，我们展示了一个公共领域的脑电图(EEG)数据集，它记录了音乐感知和想象过程。
-w我们是在一项正在进行的研究中获得这些数据的。
-到目前为止，这项研究包括10名受试者，他们分别听和想象12段短的音乐片段——每段都有7 -16秒长——这些片段都是从著名的音乐片段中截取的。
 这些刺激来自不同的体裁，系统地跨越了几个音乐维度，如节奏、节奏和歌词的存在。
 通过这种方式，可以解决各种检索和分类场景。
+
+The dataset is primarily aimed to enable music information retrieval researchers interested in these new MIIR challenges to easily test and adapt their existing approaches for music analysis like fingerprinting, beat tracking or tempo estimation on this new kind of data.
 该数据集的主要目的是使对这些新的MIIR挑战感兴趣的音乐信息检索研究人员能够容易地测试和调整他们现有的音乐分析方法，如指纹、节拍跟踪或节拍估计等这种新的数据。
+
+We also hope that the OpenMIIR dataset will facilitate a stronger interdisciplinary collaboration between music information retrieval researchers and neuroscientists.
 我们也希望OpenMIIR数据集能够促进音乐信息检索研究者和神经科学家之间更强的跨学科合作
+
+
+
 
 ## Obtaining the Raw EEG Data
 
