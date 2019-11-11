@@ -2,14 +2,18 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-import os;
+import os
+import sys
+sys.path.append("G:\Documents\GitHub\deepthought")
+sys.path.append("c:\programdata\Anaconda3\lib\site-packages")
+
 import deepthought;
 DATA_PATH = os.path.join(deepthought.DATA_PATH, 'rwanda2013rhythms');
 MODEL_PATH = os.path.join(deepthought.OUTPUT_PATH, 'nips2014', 'models', 'h0');
 OUTPUT_PATH = os.path.join(deepthought.OUTPUT_PATH, 'nips2014', 'figures', 'h0');
-print 'data path  : {}'.format(DATA_PATH);
-print 'model path : {}'.format(MODEL_PATH);
-print 'output path: {}'.format(OUTPUT_PATH);
+print ('data path  : {}'.format(DATA_PATH))
+print ('model path : {}'.format(MODEL_PATH))
+print ('output path: {}'.format(OUTPUT_PATH))
 
 
 
@@ -17,10 +21,10 @@ print 'output path: {}'.format(OUTPUT_PATH);
 # WARNING: code seems to be broken due to library update!
 from deepthought.experiments.nips2014.scripts.generate_plots import load_results;
 from deepthought.pylearn2ext.util import process_dataset;
-path4 = os.path.join(MODEL_PATH, '4', 'best');
-train, model = load_results(path4);
-dataset = train.algorithm.monitoring_dataset['test'];
-y_real, y_pred, output = process_dataset(model, dataset);
+path4 = os.path.join(MODEL_PATH, '4', 'best')
+train, model = load_results(path4)
+dataset = train.algorithm.monitoring_dataset['test']
+y_real, y_pred, output = process_dataset(model, dataset)
 
 
 # subject 4 analysis
