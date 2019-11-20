@@ -28,7 +28,7 @@ We also hope that the OpenMIIR dataset will facilitate a stronger interdisciplin
 
 This git repository does not contain the raw EEG data, which is around 700 MB per subject adding up to several gigabytes in total. There are currently two ways to obtain the data:
 
-这个git存储库不包含原始的EEG数据，每个受试者大约有700mb的数据，总计达几个gb。目前获取数据有两种方式:
+这个git存储库不包含原始的EEG数据，每个受试者大约有700mb的数据，总计达几个gb。原始的eeg信号目前获取数据有两种方式:
 
 1. download via http from one of the sites listed below:
 	- [University of Potsdam](http://www.ling.uni-potsdam.de/mlcog/OpenMIIR-RawEEG_v1/)
@@ -51,14 +51,17 @@ This data format can, for instance, also be easily converted into the MAT format
 在wikil(chttps:// github.com/sstober/openmiir/wiki/howto -import-the- raw-egle -data-into- eeglab >)中可以找到如何做到这一点的描述。
 
 For further processing, we provide custom dataset implementations and deep learning pipelines for [pylearn2](<https://github.com/lisa-lab/pylearn2>) within the [deepthought](<https://github.com/sstober/deepthought>) project. 
+
 为了进一步处理，我们提供了自定义数据集实现和深度学习管道
 [pylearn2](chttps://github.com/lisa-lab/pvlearn2>)在[deepthougus deepthought tl(<https://github.com/sstober/ deepthought>)项目中。
 
 ## More Information
 
 A first presentation about this dataset was given at [NEMISIG 2015](<http://jimi.ithaca.edu/nemisig/>) and can be downloaded [here](<http://bib.sebastianstober.de/2015-01-31_NEMISIG.pdf>).
-Furthermore, there is information about [labs using this dataset](<https://github.com/sstober/openmiir/wiki/Labs-using-this-Dataset>) and [related publications](<https://github.com/sstober/openmiir/wiki/Related-Publications>) in the [repository wiki](<https://github.com/sstober/openmiir/wiki>). Please contact us, if you would like to be added.
 关于这个数据集的第一次展示是在“NEMISIG 28151”(<http://iimi.ithaca。可下载[herel (chttp://bib]。sebastianstober。
+
+Furthermore, there is information about [labs using this dataset](<https://github.com/sstober/openmiir/wiki/Labs-using-this-Dataset>) and [related publications](<https://github.com/sstober/openmiir/wiki/Related-Publications>) in the [repository wiki](<https://github.com/sstober/openmiir/wiki>). Please contact us, if you would like to be added.
+
 此外，在“知识库wikil”(< https://github.com/sstober/openmiir/wiki/openmiir/openmiir/openmiir/openmiir/wiki/relatpublications >)中有关于“使用该数据集的实验室”(< https://github.com/sstober/openmiir/openmiir/openmiir/wiki/openmiir/openmiir/wiki >)的信息。
 请联系我们，如果你想增加。
 
@@ -74,10 +77,10 @@ You are openly invited to contribute to this dataset. There are several possibil
 If you want to contribute, please contact us.
 您被公开邀请为这个数据集做贡献。
 有几种可能做到这一点:
-通过自己运行实验来添加更多的主题
-托管一个http下载镜像或种子数据集种子以提供下载带宽。
-在数据集上运行您自己的实验并共享vour
-结果如果你想投稿，请联系我们。
+	通过自己运行实验来添加更多的主题
+	托管一个http下载镜像或种子数据集种子以提供下载带宽。
+	在数据集上运行您自己的实验并共享vour
+	结果如果你想投稿，请联系我们。
 
 ## License and Citations
 
