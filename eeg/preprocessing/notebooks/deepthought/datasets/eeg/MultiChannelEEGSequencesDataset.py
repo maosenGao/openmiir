@@ -156,10 +156,10 @@ class MultiChannelEEGSequencesDataset(VectorSpacesDataset):
         targets = []
         n_sequences = 0
 
-        print hop_size
+        print (hop_size)
         if frame_size > 0 and hop_size == -1 and hop_fraction is not None:
             hop_size = np.ceil(frame_size / hop_fraction)
-        print hop_size
+        print (hop_size)
 
         if target_mode == 'next':
             # get 1 more value per frame as target
@@ -424,11 +424,11 @@ class MultiChannelEEGSequencesDataset(VectorSpacesDataset):
 
         # sequences = sequences.reshape(sequences.shape[0]*sequences.shape[1], sequences.shape[2])
 
-        print 'sequences: {}'.format(sequences.shape)
+        print ('sequences: {}'.format(sequences.shape))
         
         labels = np.hstack(labels)
         self.labels = labels
-        print 'labels: {}'.format(labels.shape)
+        print ('labels: {}'.format(labels.shape))
 
         if target_mode == 'label':
             targets = labels.copy()
@@ -445,15 +445,15 @@ class MultiChannelEEGSequencesDataset(VectorSpacesDataset):
             targets = targets.reshape((targets.shape[0], 1))
             targets = np.repeat(targets, frame_size, axis=1)
             targets = targets.reshape((targets.shape[0], targets.shape[1], 1))
-            print targets.shape
+            print (targets.shape)
 
         elif target_mode == 'next':
             targets = np.concatenate(targets)
             targets = targets.reshape((targets.shape[0], 1, targets.shape[1]))
-        print 'targets: {}'.format(targets.shape)
+        print ('targets: {}'.format(targets.shape))
 
         n_channels = sequences.shape[2]
-        print 'number of channels: {}'.format(n_channels)
+        print ('number of channels: {}'.format(n_channels))
 
 
 
@@ -491,8 +491,8 @@ class MultiChannelEEGSequencesDataset(VectorSpacesDataset):
         # source = ('features')
         # space = SequenceSpace(VectorSpace(dim=64))
 
-        print 'sequences: {}'.format(sequences.shape)
-        print 'targets: {}'.format(targets.shape)
+        print ('sequences: {}'.format(sequences.shape))
+        print ('targets: {}'.format(targets.shape))
 
         # for i, seq in enumerate(sequences):
         #     print np.asarray(seq, dtype=np.int)
@@ -557,7 +557,7 @@ class MultiChannelEEGSequencesDataset(VectorSpacesDataset):
         for c in xrange(68):
             for t in xrange(50):
                 data[t,c] = 100*c + t
-            print data[:10,c]
+            print (data[:10,c])
         metadata = {
             'label': 1
         }

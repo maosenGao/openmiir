@@ -1,5 +1,9 @@
 __author__ = 'sstober'
 
+
+# from __future__ import  print_function
+
+
 import logging
 log = logging.getLogger(__name__)
 
@@ -344,15 +348,15 @@ class Pipeline(object):
     def plot_raw(self):
 
         try:
-            print 'scroll using cursor keys, click on channels to mark as "bad"'
+            print( 'scroll using cursor keys, click on channels to mark as "bad"')
             color = dict(eeg='blue',eog='red', stim='green')
             self.raw.plot(n_channels=69, remove_dc=True, color=color)
         except:
-            print 'ERROR: interactive mode required.'
+            print( 'ERROR: interactive mode required.')
 
 
     def print_bad_channels(self):
-        print 'bad channels:', self.raw.info['bads']
+        print( 'bad channels:', self.raw.info['bads'])
 
     def reset_bad_channels(self):
         self.raw.info['bads'] = []
@@ -373,11 +377,11 @@ class Pipeline(object):
                 return
 
         # if len(bads) == 0:
-        #     print 'No bad channels rejected.'
+        #     print( 'No bad channels rejected.'
 
         self.raw.info['bads'] = bads
 
-        print 'The following channels have been marked as bad:', self.raw.info['bads']
+        print( 'The following channels have been marked as bad:', self.raw.info['bads'])
 
         if save_to_raw:
             # raw needs to be reloaded for this with the mastoid channels still present
@@ -397,16 +401,16 @@ class Pipeline(object):
                      'To undo this, the raw data needs to be reloaded.'.format(self.raw.info['bads']))
             self.raw.interpolate_bads()
         else:
-            print 'No bad channels that need to be interpolated.'
+            print( 'No bad channels that need to be interpolated.')
 
 
     def plot_bad_channel_topo(self):
         bads = [self.raw.ch_names.index(ch) for ch in self.raw.info['bads']]
-        # print bads
+        # print( bads)
 
         # topo = np.zeros((64), dtype=float)
         topo = self.raw[0:64,0][0].squeeze()
-        # print topo.shape
+        # print( topo.shape)
 
         mask = np.zeros(64, dtype=bool)
         mask[bads] = True
@@ -415,7 +419,7 @@ class Pipeline(object):
         layout = Biosemi64Layout()
         pos = layout.projected_xy_coords()
 
-        # print pos.shape
+        # print( pos.shape)
         plt.figure(figsize=(5,5))
         mne.viz.plot_topomap(topo, pos,
                              res=2,
@@ -443,13 +447,13 @@ class Pipeline(object):
         trial_events = mne.find_events(raw, stim_channel='STI 014', shortest_event=0)
 
         if verbose:
-            print trial_events
+            print( trial_events)
 
         plt.figure(figsize=(17,10))
         axes = plt.gca()
         mne.viz.plot_events(trial_events, raw.info['sfreq'], raw.first_samp, axes=axes)
-        print '1st event at ', raw.times[trial_events[0,0]]
-        print 'last event at ', raw.times[trial_events[-1,0]]
+        print( '1st event at ', raw.times[trial_events[0,0]])
+        print( 'last event at ', raw.times[trial_events[-1,0]])
         trial_event_times = raw.times[trial_events[:,0]]
 
         self.trial_events = trial_events
@@ -466,7 +470,7 @@ class Pipeline(object):
         merged_events = merge_trial_and_audio_onsets(raw, use_audio_onsets=use_audio_onsets, inplace=False)
         if verbose:
             for event in merged_events:
-                print event
+                print( event)
 
         plt.figure(figsize=(17,10))
         axes = plt.gca()
@@ -537,7 +541,7 @@ class Pipeline(object):
 
         ## have a look at 1st channel
         channel = raw[ch_num,:][0].squeeze()
-        print channel.shape
+        print( channel.shape)
         plt.figure(figsize=(17,4))
         plt.plot(channel)
 
@@ -588,7 +592,7 @@ class Pipeline(object):
         beat_epochs = mne.Epochs(raw, beat_events, event_id,
                                       tmin, tmax, preload=True,
                                       proj=False, picks=picks, verbose=False)
-        print beat_epochs
+        print( beat_epochs)
 
         self.beat_epochs = beat_epochs
 
@@ -627,30 +631,32 @@ class Pipeline(object):
         raw = self.raw
         sfreq = self.downsample_sfreq
 
-        print """
+        print() 
+        """
         from doc:
-        WARNING: The intended purpose of this function is primarily to speed
-                up computations (e.g., projection calculation) when precise timing
-                of events is not required, as downsampling raw data effectively
-                jitters trigger timings. It is generally recommended not to epoch
-                downsampled data, but instead epoch and then downsample, as epoching
-                downsampled data jitters triggers.
-
-        NOTE: event onset collisions will be reported as warnings
-              in that case, it might be a good idea to pick either the trial onset or audio onset events
-              and delete the other ones before downsampling
+            WARNING: The intended purpose of this function is primarily to speed
+                    up computations (e.g., projection calculation) when precise timing
+                    of events is not required, as downsampling raw data effectively
+                    jitters trigger timings. It is generally recommended not to epoch
+                    downsampled data, but instead epoch and then downsample, as epoching
+                    downsampled data jitters triggers.
+        """
+        """
+            NOTEiing: event onset collisions will be reported as warnings
+                in that case, it might be a good idea to pick either the trial onset or audio onset events
+                and delete the other ones before downsampling
         """
 
-        print 'down-sampling raw and events stim channel ...'
+        print( 'down-sampling raw and events stim channel ...')
         fast_resample_mne(raw, sfreq, res_type='sinc_best', preserve_events=True, verbose=True)
         # fast_resample_mne(raw, sfreq, res_type='sinc_fastest', preserve_events=True, verbose=False)
 
         # resample epochs
-        print 'down-sampling epochs ...'
+        print( 'down-sampling epochs ...')
         self.eog_epochs.resample(sfreq)
         self._downsample_epochs()
 
-        print 'TODO: down-sampling events (not in stim channel) ...'
+        print( 'TODO: down-sampling events (not in stim channel) ...')
         # TODO: resample events
 
         self.downsampled = True
@@ -667,7 +673,7 @@ class Pipeline(object):
         trial_event_times = self.trial_event_times
 
         resampled_trial_events = mne.find_events(raw, stim_channel='STI 014', shortest_event=0)
-        # print resampled_trial_events
+        # print( resampled_trial_events)
 
         if plot:
             plt.figure(figsize=(17,10))
@@ -675,15 +681,15 @@ class Pipeline(object):
             mne.viz.plot_events(resampled_trial_events, raw.info['sfreq'], raw.first_samp, axes=axes) #, color=color, event_id=event_id)
 
         resampled_trial_event_times = raw.times[resampled_trial_events[:,0]]
-        # print resampled_trial_event_times
+        # print( resampled_trial_event_times)
 
         diff = resampled_trial_event_times - trial_event_times
-        print 'event onset jitter (min, mean, max):', diff.min(), diff.mean(), diff.max()
+        print( 'event onset jitter (min, mean, max):', diff.min(), diff.mean(), diff.max())
         diff = np.asarray(diff*1000, dtype=int)
 
         if verbose:
             for i,event in enumerate(resampled_trial_events):
-                print event, diff[i]
+                print( event, diff[i])
 
 
 
@@ -729,7 +735,7 @@ class Pipeline(object):
             n_components = ica.mixing_matrix_.shape[1]
             picks = list(range(n_components))
         if len(picks) == 0:
-            print 'nothing selected for plotting'
+            print( 'nothing selected for plotting')
             return
         ica.plot_components(picks=picks, ch_type='eeg', title='', colorbar=True, show=False)
         axes = plt.gcf()
@@ -758,22 +764,22 @@ class Pipeline(object):
         for ch in eog_picks:
             ch_name = raw.ch_names[ch]
             eog_inds, scores = ica.find_bads_eog(raw, str(ch_name), verbose=verbose)
-        #     print eog_inds, scores
+        #     print( eog_inds, scores)
             if plot:
                 ica.plot_scores(scores, exclude=eog_inds, title='EOG artifact sources (red) for channel {}'.format(ch_name))
 
             multi_scores.append(scores)
             eog_inds_set.update(eog_inds)
         multi_scores = np.vstack(multi_scores)
-        # print multi_scores.shape
+        # print( multi_scores.shape)
 
         # IMPORTANT: due to a + operation meant to concatenate lists, ica.excluded and eog_inds must be lists, not ndarrays
         # see _pick_sources() in ica.py, line 1160
         eog_inds = list(eog_inds_set)
         scores = np.max(np.abs(multi_scores), axis=0).squeeze()
 
-        print 'suggested EOG artifact channels: ', eog_inds
-        print 'EOG artifact component scores: ', scores[eog_inds]
+        print( 'suggested EOG artifact channels: ', eog_inds)
+        print( 'EOG artifact component scores: ', scores[eog_inds])
 
         self.eog_exclude_inds = eog_inds
         self.eog_exclude_scores = scores
@@ -811,7 +817,7 @@ class Pipeline(object):
         if len(sets) == 1:
             merged = sets[0]
         else:
-            print 'merging', sets
+            print( 'merging', sets)
             merged = set()
             for s in sets:
                 for e in s:
@@ -827,10 +833,9 @@ class Pipeline(object):
         scores = self.eog_exclude_scores
         suggested_artifact_components = self.suggested_artifact_components
 
-        print 'suggested channels to reject (selection="auto"): ', suggested_artifact_components
+        print( 'suggested channels to reject (selection="auto"): ', suggested_artifact_components)
 
-        print 'To change the component selection, specify select=[...] (component numbers) or select=N (top-N) and run this command again!'
-
+        print( 'To change the component selection, specify select=[...] (component numbers) or select=N (top-N) and run this command again!')
         if selection is None:
             selection = []
         elif selection == 'auto':
@@ -840,20 +845,20 @@ class Pipeline(object):
         elif isinstance(selection, list):
             selection = selection
         else:
-            print 'ERROR: unsupported value for "selection":', selection
+            print( 'ERROR: unsupported value for "selection":', selection)
             selection = []
 
         # IMPORTANT: due to a + operation meant to concatenate lists, ica.excluded and eog_inds must be lists, not ndarrays
         # see _pick_sources() in ica.py, line 1160
         selection = sorted(list(selection))
         ica.plot_scores(scores, exclude=selection, title='Artifact Component Scores')
-        print 'current selection:', selection
+        print( 'current selection:', selection)
 
         # self.selected_artifact_components = selection
 
 
     def exclude_ica_components(self, selection):
-        print 'excluding ICA components: ', selection
+        print( 'excluding ICA components: ', selection)
         self.ica.exclude = selection
 
 
@@ -870,7 +875,7 @@ class Pipeline(object):
         elif mode == 'raw':
             data = self.raw
         else:
-            print 'ERROR: Unsupported mode:', mode
+            print( 'ERROR: Unsupported mode:', mode)    
 
         if highlight == 'excluded':
             highlight = self.ica.exclude
@@ -878,21 +883,21 @@ class Pipeline(object):
         title = 'Reconstructed Latent Sources for {}'.format(mode)
         # show_picks = np.abs(scores).argsort()[::-1][:5]
         # show_picks = np.abs(scores).argsort()[::-1]
-        # print show_picks
+        # print( show_picks)
 
         if picks is None:
             n_components = ica.mixing_matrix_.shape[1]
             picks = list(range(n_components))
         if len(picks) == 0:
-            print 'nothing selected for plotting'
+            print( 'nothing selected for plotting')
             return
 
         try:
             plt.show(block=False)
             ica.plot_sources(data, picks=picks, exclude=highlight, title='', show=True)
-            print 'Plotting in interactive mode. Click to view source!'
+            print( 'Plotting in interactive mode. Click to view source!')
         except:
-            print 'NOTE: Plotting in non-interactive mode.'
+            print( 'NOTE: Plotting in non-interactive mode.')
             ica.plot_sources(data, picks=picks, exclude=highlight, title='', show=False)
             axes = plt.gcf()
             axes.set_size_inches(6 * plot_size, len(picks)/6.0 * plot_size)
@@ -909,7 +914,7 @@ class Pipeline(object):
             range = [None, None]
         start, stop = range
 
-    #     print range
+    #     print( range)
     #     ica.plot_sources(data, picks=[component],
     #                      title='component {}'.format(component),
     #                      start=start, stop=stop, show=False)
@@ -956,12 +961,12 @@ class Pipeline(object):
         elif mode == 'eog':
             data = self.eog_epochs
         else:
-            print 'ERROR: unsupported mode:', mode
+            print( 'ERROR: unsupported mode:', mode)
 
         sources = ica._transform_epochs(data, concatenate=False)
-    #     print sources.shape
+    #     print( sources.shape)
         sources = sources[:, component, :]
-    #     print sources.shape
+    #     print( sources.shape)
 
         if vmax is None:
             ylims = sources.min(), sources.max()
@@ -1028,10 +1033,10 @@ class Pipeline(object):
             evoked = None
 
         if eog_evoked is not None:
-            print 'Assess impact on average EOG artifact:'
+            print( 'Assess impact on average EOG artifact:')
             ica.plot_sources(eog_evoked, exclude=ica.exclude)  # plot EOG sources + selection
 
-            print 'Assess cleaning of EOG epochs:'
+            print( 'Assess cleaning of EOG epochs:')
 
             # Note: this method appears to be broken! Lines that should be red are drawn in black
             # ica.plot_overlay(eog_evoked, exclude=ica.exclude)
@@ -1041,11 +1046,11 @@ class Pipeline(object):
             plot_ica_overlay_evoked(evoked=eog_evoked, evoked_cln=evoked_cln, title='', show=True)
 
         if raw is not None:
-            print 'Assess impact on raw. Check the amplitudes do not change:'
+            print( 'Assess impact on raw. Check the amplitudes do not change:')
             ica.plot_overlay(raw)  # EOG artifacts remain
 
         if evoked is not None:
-            print 'Assess impact on evoked. Check the amplitudes do not change:'
+            print( 'Assess impact on evoked. Check the amplitudes do not change:')
             evoked_cln = ica.apply(evoked, exclude=ica.exclude, copy=True)
             plot_ica_overlay_evoked(evoked=evoked, evoked_cln=evoked_cln, title='', show=True)
 

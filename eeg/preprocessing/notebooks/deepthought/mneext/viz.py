@@ -4,7 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from itertools import cycle
 from mne.io.pick import channel_type
-from mne.externals.six import string_types
+# from mne.externals.six import string_types
+from six import string_types
 from mne.defaults import _handle_default
 from mne.viz.utils import tight_layout
 

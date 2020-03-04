@@ -7,7 +7,8 @@ Created on May 10, 2014
 import os;
 from watchdog.events import LoggingEventHandler;
 import shutil;
-import gzip, cPickle;
+import _pickle as cPickle
+import gzip;
 
 def move_file_to(file_path, target_dir):
     ensure_dir_exists(target_dir);

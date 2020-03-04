@@ -128,13 +128,13 @@ class MultiChannelEEGDataset(DenseDesignMatrix):
         # save params
         self.params = locals().copy()
         del self.params['self']
-        # print self.params
+        # print( self.params)
         
         # TODO: get the whole filtering into an extra class
         
         datafiles_metadata, metadb = load_datafiles_metadata(path)
         
-#         print datafiles_metadata
+#         print( datafiles_metadata)
         
         def apply_filters(filters, node):            
             if isinstance(node, dict):            
@@ -156,8 +156,8 @@ class MultiChannelEEGDataset(DenseDesignMatrix):
         for datafile in self.datafiles:
             self.metadb[datafile] = metadb[datafile]
         
-#         print self.datafiles
-#         print self.metadb
+#         print( self.datafiles)
+#         print( self.metadb)
         
         self.name = name
 
@@ -288,8 +288,8 @@ class MultiChannelEEGDataset(DenseDesignMatrix):
                                     self.spectrum_normalization_mode)
                              )
                         
-                        #print s.mean(axis=0)
-                        #print s.std(axis=0)
+                        #print( s.mean(axis=0))
+                        #print( s.std(axis=0))
     
                         # include phase information if requested
                         if self.include_phase:
@@ -299,7 +299,7 @@ class MultiChannelEEGDataset(DenseDesignMatrix):
                         
                         # transpose to fit pylearn2 layout
                         s = np.transpose(s)
-                        # print s.shape
+                        # print( s.shape)
 
                         ### end of frequency spectrum branch ###
                     else:
@@ -310,7 +310,7 @@ class MultiChannelEEGDataset(DenseDesignMatrix):
 
                         # add 2nd data dimension
                         s = s.reshape(s.shape[0], 1)
-                        # print s.shape
+                        # print( s.shape)
 
                         ### end of raw waveform branch ###
 
@@ -322,12 +322,12 @@ class MultiChannelEEGDataset(DenseDesignMatrix):
                     else:
                         frames = s
                     del s
-                    # print frames.shape
+                    # print( frames.shape)
 
                     if flatten_channels:
                         # add artificial channel dimension
                         frames = frames.reshape((frames.shape[0], frames.shape[1], frames.shape[2], 1))
-                        # print frames.shape
+                        # print( frames.shape)
 
                         sequences.append(frames)
 
@@ -369,7 +369,7 @@ class MultiChannelEEGDataset(DenseDesignMatrix):
 
                     # move channel dimension to end
                     multi_channel_frames = np.rollaxis(multi_channel_frames, 0, 4)
-                    # print multi_channel_frames.shape
+                    # print( multi_channel_frames.shape)
                     # log.debug(multi_channel_frames.shape)
 
                     sequences.append(multi_channel_frames)
@@ -395,7 +395,7 @@ class MultiChannelEEGDataset(DenseDesignMatrix):
       
         # turn into numpy arrays
         sequences = np.vstack(sequences)
-        # print sequences.shape;
+        # print( sequences.shape;)
         
         labels = np.hstack(labels)
         

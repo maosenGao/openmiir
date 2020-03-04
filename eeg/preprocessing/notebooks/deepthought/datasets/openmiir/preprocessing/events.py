@@ -188,21 +188,21 @@ def extract_events_from_raw(raw, markers_filepath, subject, verbose=True):
     if subject in ['P01', 'P04', 'P05', 'P06', 'P07', 'P09']: # FIXME
         block_order = None
         labels = id2stimuli.values()
-        print labels
+        print( labels)
         for i, marker in enumerate(markers):
             etype = marker[0].strip() # get rid of whitespace first!
             if etype == 'FileOrder':
                 block_order = marker[1]
-                print 'block order: ', block_order
+                print( 'block order: ', block_order)
                 within_block_i = 0
             elif etype == 'noise':
                 continue # skipping noise
             elif etype in stimuli2id:
                 real_label = labels[block_order[within_block_i]] # NOTE: [0] = noise
-                print 'fixing label {} -> {}'.format(etype, real_label)
+                print( 'fixing label {} -> {}'.format(etype, real_label))
                 marker[0] = real_label
                 within_block_i += 1
-        print markers
+        print( markers)
     # END BUGFIX: repair wrong trial labels
 
     ## pass over real labels from auxiliary file: convert timestamps to sample offsets
@@ -333,7 +333,7 @@ def extract_events_from_raw(raw, markers_filepath, subject, verbose=True):
         log.debug('filtered events:')
         for event in filtered:
             log.debug(event)
-        print_event_type_counts(filtered[:,2], decoder=get_event_string) # for checking occurrences
+        print(_event_type_counts(filtered[:,2], decoder=get_event_string)) # for checking occurrences
 
     return filtered
 
@@ -374,7 +374,7 @@ def generate_beat_events(trial_events,                  # base events as stored 
             num_cue_beats[stimulus_id] = \
                 meta[stimulus_id]['beats_per_bar'] * meta[stimulus_id]['cue_bars']
         if verbose:
-            print num_cue_beats
+            print( num_cue_beats)
 
 
     ## helper function to add a single beat event
@@ -382,7 +382,7 @@ def generate_beat_events(trial_events,                  # base events as stored 
         etype = beat_event_id_generator(stimulus_id, condition, cue, beat_count)
         beat_events.append([etime, 0, etype])
         if verbose:
-            print beat_events[-1]
+            print( beat_events[-1])
 
     ## helper function to add a batch of beat events
     def add_beat_events(etimes, stimulus_id, condition, cue=False):
@@ -396,7 +396,7 @@ def generate_beat_events(trial_events,                  # base events as stored 
         etime = event[0]
 
         if verbose:
-            print '{:4d} at {:8d}'.format(etype, etime)
+            print( '{:4d} at {:8d}'.format(etype, etime))
 
         if etype >= 1000: # stimulus_id + condition
             continue
@@ -414,7 +414,7 @@ def generate_beat_events(trial_events,                  # base events as stored 
                 trial_start = next_event[0]
 
         if verbose:
-            print 'Trial start at {}'.format(trial_start)
+            print( 'Trial start at {}'.format(trial_start))
 
         if condition < 3: # cued
             offset = sr * meta[stimulus_id]['length_of_cue']
@@ -424,7 +424,7 @@ def generate_beat_events(trial_events,                  # base events as stored 
                 cue_beat_times = cue_beat_times[:num_cue_beats[stimulus_id]]  # truncate at num_cue_beats
                 cue_beat_times = np.asarray(cue_beat_times, dtype=int)
                 if verbose:
-                    print cue_beat_times
+                    print( cue_beat_times)
                 add_beat_events(cue_beat_times, stimulus_id, condition, cue=True)
         else:
             offset = 0 # no cue
@@ -432,7 +432,7 @@ def generate_beat_events(trial_events,                  # base events as stored 
         beat_times = trial_start + offset + np.floor(sr * beats[stimulus_id])
         beat_times = np.asarray(beat_times, dtype=int)
         if verbose:
-            print beat_times[:5], '...'
+            print( beat_times[:5], '...')
         add_beat_events(beat_times, stimulus_id, condition)
 
     beat_events = np.asarray(beat_events, dtype=int)
@@ -489,9 +489,9 @@ def decode_beat_event_type(etype):
 
 
 def filter_beat_events(events, stimulus_ids='any', conditions='any', beat_counts='any', cue_value='any'):
-#     print 'selected stimulus ids:', stimulus_ids
-#     print 'selected conditions  :', conditions
-#     print 'selected beat counts :', beat_counts
+#     print( 'selected stimulus ids:', stimulus_ids)
+#     print( 'selected conditions  :', conditions)
+#     print( 'selected beat counts :', beat_counts)
     filtered = list()
 
     for event in events:
@@ -512,8 +512,8 @@ def decode_trial_event_type(etype):
     return stimulus_id, condition
 
 def filter_trial_events(events, stimulus_ids='any', conditions='any'):
-#     print 'selected stimulus ids:', stimulus_ids
-#     print 'selected conditions  :', conditions
+#     print( 'selected stimulus ids:', stimulus_ids)
+#     print( 'selected conditions  :', conditions)
 
     filtered = list()
 
@@ -564,5 +564,5 @@ def remove_overlapping_events(events, tmin, tmax, sfreq):
             filtered.append(event)
             last_end = event[0] + tmin + sample_len
     filtered = np.asarray(filtered)
-    print 'kept {} of {} events'.format(len(filtered), len(events))
+    print( 'kept {} of {} events'.format(len(filtered), len(events)))
     return filtered
