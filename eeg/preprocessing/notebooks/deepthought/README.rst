@@ -3,9 +3,11 @@ deepthought: a library for decoding brain activity using deep learning
 ==============================
 
 
-deepthought is a library for decoding brain activity from electroencephalography (EEG) recordings by using deep learning techniques. It is written in python (2.7) and builds upon `Pylearn2 <https://github.com/lisa-lab/pylearn2>`_ and `Theano <https://github.com/Theano>`_.
+deepthought is a library for decoding brain activity from electroencephalography (EEG) recordings by using deep learning techniques. 
+It is written in python (2.7) and builds upon `Pylearn2 <https://github.com/lisa-lab/pylearn2>`_ and `Theano <https://github.com/Theano>`_.
 
-The library is still very young and under active development. If you have any questions or are interested in collaborating, please contact Sebastian Stober <sstober at two dot ca>.
+The library is still very young and under active development. 
+If you have any questions or are interested in collaborating, please contact Sebastian Stober <sstober at two dot ca>.
 
 
 License and Citations

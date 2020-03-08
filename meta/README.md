@@ -1,4 +1,4 @@
-This directory contains meta information about the stimuli and the EEG setup.
+﻿This directory contains meta information about the stimuli and the EEG setup.
 
 * beats.v1 - beat onsets in the stimuli and cues as detected by the [librosa beat tracker][1] (version 1, subjects P01-P08)
 * beats.v2 - beat onsets in the stimuli and cues as detected by the [librosa beat tracker][1] (version 2, subjects P09-P14)
@@ -7,9 +7,12 @@ This directory contains meta information about the stimuli and the EEG setup.
 * Stimuli_Meta.v2.xlsx - stimulus metadata for version 2 of the stimuli (subjects P09-P14)
 
 [1]: https://github.com/bmcfee/librosa
+
 [2]: http://www.biosemi.com/download/Cap_coords_all.xls
 
 这个目录包含关于刺激和脑电图设置的元信息。
+
+
 垮掉的一代。v1 - librosa beat trackerl[1]检测到的刺激和线索中的节拍onsets(版本1，受试者P81-P88)
 垮掉的一代。v2- librosa beat trackerl[1]检测到的刺激和线索中的节拍onsets(版本2，受试者P89-P14)
 电极信息。xlsx- EEG通道名称和cab坐标，从“官方Biosemi网站”获得][2]，其中也有电极位置的图像。
