@@ -3,3 +3,4 @@ eeg-data-exploration/
 .vscode/settings.json
 eeg/preprocessing/notebooks/Subject P01.ipynb
 eeg/preprocessing/notebooks/Subject P01.ipynb
+*.fif
