@@ -50,4 +50,4 @@ if __name__ == '__main__':
     print( 'saving events to', args.events_filepath)
     io.savemat(args.events_filepath, dict(data=eeglab_events), oned_as='row')
 
-    
+

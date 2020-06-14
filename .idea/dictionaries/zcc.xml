@@ -2,7 +2,10 @@
   <dictionary name="zcc">
     <words>
       <w>argparse</w>
+      <w>eeglab</w>
       <w>filepath</w>
+      <w>sstober</w>
+      <w>urevent</w>
     </words>
   </dictionary>
 </component>

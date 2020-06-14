@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 __author__ = 'sstober'
+
 '''
 Created on Jun 16, 2015
 @author: sstober
@@ -37,7 +38,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     print('loading raw data from ',
-           args.fif_filepath)
+          args.fif_filepath)
 
     raw = mne.io.Raw(args.fif_filepath,
                      preload=True,
