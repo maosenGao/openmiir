@@ -1,21 +1,25 @@
-importPath = './E:\OpenMIIR-RawEEG_v1\OpenMIIR\eeg\mne';
-outputPath = './E:\OpenMIIR-RawEEG_v1\OpenMIIR\eeg\mne';
+importPath = 'E:\OpenMIIR-RawEEG_v1\OpenMIIR\eeg\mne';
+outputPath = 'E:\OpenMIIR-RawEEG_v1\OpenMIIR\eeg\mne';
 
-subject = 'P01';
-rawdataFilename = fullfile(importPath, [subject '-eegdata.mat']);
+subject = 'P14';
+rawdataFilename = fullfile(importPath, [subject '-eeg.mat']);
 eventsFilename = fullfile(importPath, [subject '-events.mat']); 
 srate = 512.0;
 
 %% import raw data - does not work
 eeglab
-fprintf('\nImporting raw data from %s...\n', rawdataFilename)
-% EEG = pop_importegimat(rawdataFilename, srate, 0, 'data'); % this does not work here, but in the GUI
-EEG = pop_importegimat(); % use the GUI so select the file and set the sample rate
+fprintf('\n Importing raw data from %s...\n', rawdataFilename)
+EEG = pop_importegimat(rawdataFilename, srate, 0, 'data'); 
+
+% this does not work here, but in the GUI
+% EEG = pop_importegimat(); 
+% use the GUI so select the file and set the sample rate
 EEG.setname = [subject '_imported'];
 EEG = eeg_checkset( EEG );
 
 %% remove stim channel
-EEG = pop_select( EEG,'channel', [1:68] ); % TODO: this needs to be adapted if mastoid channels are to be kept
+EEG = pop_select( EEG,'channel', [1:68] );
+% TODO: this needs to be adapted if mastoid channels are to be kept
 EEG = eeg_checkset( EEG );
 
 %% set channel locations
