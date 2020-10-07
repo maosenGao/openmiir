@@ -5,7 +5,7 @@ import logging
 import numpy as np
 plt = None
 axes = None
-from theano.compat.six.moves import xrange
+from six.moves import xrange
 from theano.compat.six import string_types
 import warnings
 try:

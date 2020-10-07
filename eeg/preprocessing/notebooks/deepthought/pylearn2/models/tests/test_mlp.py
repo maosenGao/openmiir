@@ -7,7 +7,7 @@ from nose.plugins.skip import SkipTest
 import numpy as np
 
 from theano.compat import six
-from theano.compat.six.moves import reduce, xrange
+from six.moves import reduce, xrange
 import theano
 from theano import tensor, config
 T = tensor
